@@ -1,0 +1,126 @@
+---
+title: "Probability Distributions"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Binomial Distribution
+      Is  a discrete probability distribution. It describes the outcome of n independent trials in an experiment. Each trial is assumed to have only two outcomes, either success or failure. If the probability of a successful trial is p, then the probability of having x successful outcomes in an experiment of n independent trials is as follows.
+      
+      p(x) = (n! / x!(n - x)!) * P^x(1 - P)^(n-x) for x = 1,2,3...,n
+      
+Q1:
+
+Suppose there are twelve multiple choice questions in an English class quiz. Each question has five possible answers, and only one of them is correct. Find the probability of having four or less correct answers if a student attempts to answer every question at random.
+
+Soulution:
+
+Probability to answer a question is  1/5 = 0.2, probability of answer 4 questions. 
+```{r}
+dbinom(4, size = 12, prob = 0.2)
+
+```
+we can use the cumulative probability function for find the probability of having four or less correct answers by random attempts
+
+```{r}
+pbinom(4, size=12, prob=0.2)
+
+```
+
+so we can say, The probability of four or less questions answered correctly by random in a twelve question multiple choice quiz is 92.7%.
+
+
+# Poisson Distribution
+
+The Poisson distribution is the probability distribution of independent event occurrences in an interval. If λ is the mean occurrence per interval, then the probability of having x occurrences within a given interval is:
+              
+              P(x; μ) = (e-μ) (μx) / x
+
+Problem:
+
+If there are twelve cars crossing a bridge per minute on average, find the probability of having seventeen or more cars crossing the bridge in a particular minute.
+
+Solution:
+
+The probability of having sixteen or less cars crossing the bridge in a particular minute.
+
+```{r}
+ppois(16, lambda=12)   # lower tail 
+
+```
+
+The probability of having sixteen or above cars crossing the bridge in a particular 
+minute.
+
+```{r}
+ppois(16, lambda = 12, lower = FALSE) # Upper tail
+
+```
+
+So we can see, the probability of having seventeen or more cars crossing the bridge in a particular minute is 10.1%.
+
+# Continuous Uniform Distribution
+
+The continuous uniform distribution is the probability distribution of random number selection from the continuous interval between a and b.
+
+Problem:
+
+Select ten random numbers between one and three.
+
+```{r}
+runif(10, min=1, max=3)
+
+```
+
+# Exponential Distribution
+
+Problem:
+
+Suppose the mean checkout time of a supermarket cashier is three minutes. Find the probability of a customer checkout being completed by the cashier in less than two minutes.
+
+```{r}
+pexp(7, rate=1/10, lower = FALSE)
+
+
+qexp(0.8, rate = 1/10, lower.tail = TRUE) # 80th percentile.
+
+```
+
+The probability of finishing a checkout in under two minutes by the cashier is 48.7%.
+
+
+# Normal Distribution
+
+The normal distribution is defined by the following probability density function, where μ is the population mean and σ2 is the variance.
+
+Problem:
+
+Assume that the test scores of a college entrance exam fits a normal distribution. Furthermore, the mean test score is 72, and the standard deviation is 15.2. What is the percentage of students scoring 84 or more in the exam?
+
+```{r}
+pnorm(84, mean=72, sd=15.2, lower.tail=FALSE) 
+
+```
+
+The percentage of students scoring 84 or more in the college entrance exam is 21.5%.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
